@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 const API_URL = meta.env.VITE_API_URL;
 const AuthForm = ({ authFormType }) => {
     const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
    
     handleFormAuth = () => {
 
@@ -12,7 +14,7 @@ const AuthForm = ({ authFormType }) => {
     handleSignUp = async (event) => {
         const user = event;
         try {
-          await axios.post(API_URL, user);
+          const response = await axios.post(`${API_URL}/user/`, user);
         } catch (err) {
             console.error(err)
         }
